@@ -1,0 +1,24 @@
+# Secrets — never commit
+*.local.txt
+*.local.json
+secret-*
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Build artifacts
+dist/
+build/
+
+# Personal health data — never commit
+data/
+
+# Node / dashboard
+node_modules/
+.next/
+dashboard/.next/

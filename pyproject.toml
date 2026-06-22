@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "biostream"
+version = "0.0.1"
+description = "Collect Amazfit/Zepp strap (BLE) + Oura cloud health data and serve it over GraphQL."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Dogukan Gundogan", email = "tools@certhub.de" }]
+requires-python = ">=3.10"
+keywords = ["amazfit", "zepp", "oura", "ble", "health", "graphql", "wearable", "huami", "quantified-self"]
+dependencies = [
+    "bleak>=0.21",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "strawberry-graphql[fastapi]>=0.220",
+    "cryptography>=42",
+    "platformdirs>=4",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+    "huami-token",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Framework :: FastAPI",
+]
+
+[project.scripts]
+biostream = "biostream.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/certhub/biostream"
+Issues = "https://github.com/certhub/biostream/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/biostream"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/biostream", "README.md", "LICENSE", "pyproject.toml"]
+exclude = ["dashboard", "data", "*.local.txt"]
